@@ -1,0 +1,22 @@
+---
+
+- name: Create Ansible local facts directory
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
+  become: yes
+  become_user: root
+
+- name: Create essential directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ oracle.user }}"
+    group: "{{ oracle.group }}"
+  with_items:
+    - "{{ oag.logs_dir }}"
+
+- name: Prepare OAG installation options file
+  template:
+    src: oag.options.j2
+    dest: "{{ oag.install_response_file }}"

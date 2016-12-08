@@ -1,0 +1,4 @@
+---
+
+- name: Create OAG domain
+  command: "{{ oag_bin }}/managedomain --username {{ oag_username }} --password {{ oag_password }} -c -n Gateway1 -g Group1 --host {{ oag_hostname }} -s {{ oag_external_port }} -m {{ oag_local_mgmt_port }} > {{ oag.logs_dir }}/oag_create_domain_$(date +'%F').log 2>&1"

@@ -1,0 +1,13 @@
+---
+
+- name: Install Oracle API Gateway
+  shell: "/files/OAG-11.1.2.4.0-linux-x64-installer.run --optionfile {{ oag.install_response_file }} > {{ oag.logs_dir }}/oag_installation_$(date +'%F').log 2>&1"
+
+- name: Launch Node Manager
+  command: "/etc/init.d/vshell-Node-Manager-on-ansible-vm start > {{ oag.logs_dir }}/oag_nodemanager_$(date +'%F').log 2>&1"
+  environment:
+    SYSTEMCTL_SKIP_REDIRECT: 1
+    
+- set_fact:
+    oag_already_installed: true
+  when: oag_home.stat.exists

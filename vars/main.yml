@@ -1,0 +1,23 @@
+---
+
+oracle_base_dir: '/u01/app/oracle'
+oag_bin: '{{ oag_prefix }}/apigateway/posix/bin'
+
+#
+# Oracle user parameters
+#
+oracle:
+  user: oracle
+  group: oinstall
+  home_dir: '/home/oracle'
+
+#
+# oac parameters
+#
+oag_already_installed: false
+
+oag:
+  logs_dir: "{{ oracle.home_dir }}/logs"
+  install_response_file: '/tmp/oag.rsp'
+
+

@@ -1,0 +1,25 @@
+---
+
+#
+# Compatibility verifications
+#
+
+- name: Get local facts
+  setup:
+    filter: "ansible_local"
+  register: result
+
+- name: Check if OAG is already installed
+  stat:
+    path: "{{ oag_prefix }}"
+  register: oag_home
+  become: yes
+  become_user: "{{ oracle.user }}"
+
+- debug:
+    msg: "Oracle API Gateway is already installed in '{{ oag_prefix }}'"
+  when: oag_home.stat.exists
+
+- set_fact:
+    oag_already_installed: true
+  when: oag_home.stat.exists

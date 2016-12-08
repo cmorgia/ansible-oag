@@ -1,0 +1,17 @@
+prefix={{ oag_prefix }}
+mode=unattended
+enable-components=apigateway,analytics,policystudio,configurationstudio,apitester
+setup_type=standard
+firstInNewDomain=1
+nmHostnameOrIpChoice={{ oag_hostname }}
+nmPort={{ oag_port }}
+rnmUsername={{ oracle.user }}
+rnmPassword=password
+askNmService=0
+nmServiceUser={{ oracle.user }}
+nmServiceUserQuestion=0
+configureGatewayQuestion=0
+askGwService=0
+nmStartupQuestion=0
+gwMgmtPort={{ oag_local_mgmt_port }}
+gwServicesPort={{ oag_external_port }}
