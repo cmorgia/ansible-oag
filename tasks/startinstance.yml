@@ -1,0 +1,21 @@
+---
+
+- name: Start Instance
+  shell : "{{ oag_bin }}/startinstance -g Group1 -n Gateway1"
+  become: yes
+  become_user: root
+  tags:
+    - oag-start-instance
+    - oac-install-and-init
+
+- name: Wait for Instance to startup
+  wait_for:
+    port: "{{ oag_external_port }}"
+    host: "{{ oag_hostname }}"
+    delay: 4
+    timeout: 60
+  ignore_errors: true
+  tags:
+    - oag-start-instance
+    - oag-restart-instance
+    - oag-install-and-init

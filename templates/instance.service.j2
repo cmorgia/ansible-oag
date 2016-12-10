@@ -3,7 +3,7 @@
 #
 
 [Unit]
-Description=NodeManager Service for OAG
+Description=Instance Service for OAG
 After=network.target
 
 [Service]
@@ -11,9 +11,9 @@ User={{ oracle.user }}
 Group={{ oracle.group }}
 Type=simple
 Environment="JAVA_OPTIONS=-Djava.security.egd=file:///dev/urandom"
-ExecStart="{{ oag_bin }}/nodemanager -d"
-ExecStop="{{oag_bin}}/nodemanager -k"
-PIDFile={{ oag_posix }}/nodemanager.process.id
+ExecStart={{ oag_bin }}/startinstance -g "Group1" -n "Gateway1" -d > /dev/null 2>&1 &
+ExecStop={{oag_bin}}/startinstance -g "Group1" -n "Gateway1" -k > /dev/null 2>&1 &
+PIDFile={{ oag_posix }}/instance.process.id
 Restart=on-failure
 RestartSec=1
 

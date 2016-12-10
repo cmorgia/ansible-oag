@@ -1,7 +1,8 @@
 ---
 
 oracle_base_dir: '/u01/app/oracle'
-oag_bin: '{{ oag_prefix }}/apigateway/posix/bin'
+oag_posix: '{{ oag_prefix }}/apigateway/posix'
+oag_bin: '{{ oag_posix }}/bin'
 
 #
 # Oracle user parameters

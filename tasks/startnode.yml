@@ -1,0 +1,21 @@
+---
+
+- name: Start Nodemanager service
+  shell : "{{ oag_bin }}/nodemanager -d"
+  become: yes
+  become_user: root
+  tags:
+    - oag-start-nodemanager
+    - oac-install-and-init
+
+- name: Wait for NodeManager to startup
+  wait_for:
+    port: "{{ oag_port }}"
+    host: "{{ oag_hostname }}"
+    delay: 4
+    timeout: 60
+  ignore_errors: true
+  tags:
+    - oag-start-nodemanager
+    - oag-restart-nodemanager
+    - oag-install-and-init

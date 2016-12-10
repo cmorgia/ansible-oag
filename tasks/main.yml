@@ -12,12 +12,19 @@
     
 - include: install.yml
   become: yes
-  become_user: root
+  become_user: "{{ oracle.user }}"
   when: not oag_already_installed
   tags:
     - oag-install
     
 - include: setpassword.yml
+  become: yes
+  become_user: "{{ oracle.user }}"
+  when: not oag_already_installed
+  tags:
+    - oag-install
+
+- include: startnode.yml
   become: yes
   become_user: root
   when: not oag_already_installed
@@ -26,13 +33,13 @@
 
 - include: configure.yml
   become: yes
-  become_user: root
+  become_user: "{{ oracle.user }}"
   when: not oag_already_installed
   tags:
     - oag-install
 
-- include: service.yml
-  become: yes
-  become_user: root
-  tags:
-    - oag-start
+# - include: service.yml
+#   become: yes
+#   become_user: root
+#   tags:
+#     - oag-start
