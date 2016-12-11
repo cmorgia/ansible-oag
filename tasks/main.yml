@@ -38,8 +38,10 @@
   tags:
     - oag-install
 
-# - include: service.yml
-#   become: yes
-#   become_user: root
-#   tags:
-#     - oag-start
+- include: startinstance.yml
+  become: yes
+  become_user: root
+  when: not oag_already_installed
+  tags:
+    - oag-install
+

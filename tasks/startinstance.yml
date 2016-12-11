@@ -1,7 +1,7 @@
 ---
 
 - name: Start Instance
-  shell : "{{ oag_bin }}/startinstance -g Group1 -n Gateway1"
+  shell : '{{ oag_bin }}/startinstance -g "Group1" -n "Gateway1" -d'
   become: yes
   become_user: root
   tags:
@@ -13,7 +13,7 @@
     port: "{{ oag_external_port }}"
     host: "{{ oag_hostname }}"
     delay: 4
-    timeout: 60
+    timeout: 120
   ignore_errors: true
   tags:
     - oag-start-instance
