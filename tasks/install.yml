@@ -1,7 +1,7 @@
 ---
 
 - name: Install Oracle API Gateway
-  shell: "/files/OAG-11.1.2.4.0-linux-x64-installer.run --optionfile {{ oag.install_response_file }} > {{ oag.logs_dir }}/oag_installation_$(date +'%F').log 2>&1"
+  shell: "/vagrant/files/OAG-11.1.2.4.0-linux-x64-installer.run --optionfile {{ oag.install_response_file }} > {{ oag.logs_dir }}/oag_installation_$(date +'%F').log 2>&1"
 
 # - name: Copy NodeManager systemd script
 #   template:
