@@ -37,6 +37,11 @@
 #   become: yes
 #   become_user: root
 
+- name: Prepare OAG JVM config file
+  template:
+    src: oag.jvm.j2
+    dest: "{{ oag_prefix }}/apigateway/conf/jvm.xml"
+
 - set_fact:
     oag_already_installed: true
   when: oag_home.stat.exists
